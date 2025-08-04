@@ -1,4 +1,4 @@
-DROP FUNCTION IF EXISTS hello_world();
+DROP FUNCTION IF EXISTS greet_user();
 
 CREATE OR REPLACE FUNCTION greet_user(name TEXT)
 RETURNS VARCHAR
@@ -30,6 +30,7 @@ $$;
 -- Usage:
 CALL create_orders_table();
 
+DROP PROCEDURE IF EXISTS multiply_three();
 
 CREATE OR REPLACE FUNCTION multiply_three(x DOUBLE PRECISION, y DOUBLE PRECISION, z DOUBLE PRECISION)
 RETURNS DOUBLE PRECISION
@@ -44,6 +45,7 @@ $$;
 SELECT multiply_three(2, 3, 4);
 
 
+DROP PROCEDURE IF EXISTS div_mod();
 
 CREATE OR REPLACE FUNCTION div_mod(
 	a DOUBLE PRECISION, 
@@ -64,9 +66,7 @@ SELECT * FROM div_mod(17, 5);
 
 
 
-SELECT multiply_three(2, 3, 4);
-
-
+DROP PROCEDURE IF EXISTS sp_math_roots();
 
 CREATE OR REPLACE FUNCTION sp_math_roots(
 	x DOUBLE PRECISION, 
@@ -138,7 +138,7 @@ CALL prepare_books_db();
 
 
 
-drop function sp_get_books_with_year();
+drop function IF EXISTS sp_get_books_with_year();
 
 CREATE OR REPLACE FUNCTION sp_get_books_with_year()
 		RETURNS TABLE (
@@ -159,7 +159,7 @@ $$;
 SELECT * FROM sp_get_books_with_year();
 
 
-drop function sp_latest_book();
+drop function IF EXISTS sp_latest_book();
 
 CREATE OR REPLACE FUNCTION sp_latest_book()
 		RETURNS TABLE (
@@ -182,7 +182,7 @@ SELECT * FROM sp_latest_book();
 
 
 
-drop function sp_books_summary();
+drop functionIF EXISTS  sp_books_summary();
 
 CREATE OR REPLACE FUNCTION sp_books_summary(
 		OUT youngest_book DATE,
@@ -204,7 +204,7 @@ SELECT * FROM sp_books_summary();
 
 
 
-drop function sp_books_by_year_range();
+drop function IF EXISTS sp_books_by_year_range();
 
 CREATE OR REPLACE FUNCTION sp_books_by_year_range(from_year INT, to_year INT)
 		RETURNS TABLE (
@@ -227,6 +227,7 @@ END;
 $$;
 
 SELECT * FROM sp_books_by_year_range(2000, 2015);
+
 
 
 
