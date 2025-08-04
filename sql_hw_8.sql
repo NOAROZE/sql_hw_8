@@ -19,7 +19,7 @@ CREATE OR REPLACE PROCEDURE create_orders_table()
 LANGUAGE plpgsql AS
 $$
 BEGIN
-    CREATE TABLE IF NOT EXISTS demo (
+    CREATE TABLE IF NOT EXISTS orders(
         id SERIAL PRIMARY KEY,
         name TEXT NOT NULL,
         email TEXT UNIQUE NOT NULL
@@ -71,10 +71,10 @@ DROP PROCEDURE IF EXISTS sp_math_roots();
 CREATE OR REPLACE FUNCTION sp_math_roots(
 	x DOUBLE PRECISION, 
 	y DOUBLE PRECISION,
-	OUT sum_result integer,
-	OUT diff_result integer,
-	OUT sqrt_x integer,
-	OUT y_power_4 integer
+	OUT sum_result DOUBLE PRECISION,
+	OUT diff_result DOUBLE PRECISION,
+	OUT sqrt_x DOUBLE PRECISION,
+	OUT y_power_4 DOUBLE PRECISION
 )
 LANGUAGE plpgsql AS
 $$
@@ -216,17 +216,19 @@ CREATE OR REPLACE FUNCTION sp_books_by_year_range(from_year INT, to_year INT)
 LANGUAGE plpgsql AS
 $$
 BEGIN
-	  RETURN QUERY
+      RETURN QUERY
       SELECT 
-	  	b.id, 
-		b.title, 
-		b.publish_date, 
-		b.price
-	  FROM books b;
+	  b.id, 
+	  b.title, 
+	  b.publish_date, 
+	  b.price
+     FROM books b
+     WHERE EXTRACT(YEAR FROM b.publish_date)::INT BETWEEN from_year AND to_year;;
 END;
 $$;
 
 SELECT * FROM sp_books_by_year_range(2000, 2015);
+
 
 
 
