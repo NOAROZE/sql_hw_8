@@ -182,7 +182,7 @@ SELECT * FROM sp_latest_book();
 
 
 
-drop functionIF EXISTS  sp_books_summary();
+drop function IF EXISTS  sp_books_summary();
 
 CREATE OR REPLACE FUNCTION sp_books_summary(
 		OUT youngest_book DATE,
@@ -228,6 +228,7 @@ END;
 $$;
 
 SELECT * FROM sp_books_by_year_range(2000, 2015);
+
 
 
 
