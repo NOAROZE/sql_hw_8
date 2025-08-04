@@ -193,7 +193,7 @@ CREATE OR REPLACE FUNCTION sp_books_summary(
 LANGUAGE plpgsql AS
 $$
 BEGIN
-      youngest_book := SELECT MAX(publish_date) FROM books;;
+      youngest_book := SELECT MAX(publish_date) FROM books;
       oldest_book := SELECT MIN(publish_date) FROM books;
       avg_price := SELECT ROUND(AVG(price)::NUMERIC, 2) FROM books;
       total_books := SELECT COUNT(*) FROM books;
@@ -228,6 +228,7 @@ END;
 $$;
 
 SELECT * FROM sp_books_by_year_range(2000, 2015);
+
 
 
 
