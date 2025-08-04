@@ -10,7 +10,7 @@ END;
 $$;
 
 -- Usage:
-SELECT greet_user('Alex');
+SELECT * from greet_user('Alex');
 
 
 DROP PROCEDURE IF EXISTS create_orders_table();
@@ -228,6 +228,7 @@ END;
 $$;
 
 SELECT * FROM sp_books_by_year_range(2000, 2015);
+
 
 
 
